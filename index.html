@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Kalkulator Investasi</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- CSS Kustom -->
+    <style>
+        /* CSS Tambahan untuk Tampilan yang Lebih Baik */
+        .page {
+            min-height: 80vh; /* Memberi tinggi minimum agar konten di tengah secara vertikal */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar-brand img {
+            margin-right: 8px;
+        }
+        .form-section {
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+        /* Menyembunyikan div hasil kalkulasi sampai ada isinya */
+        #resultSederhana:empty,
+        #resultMajemuk:empty,
+        #resultMasaDepan:empty {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-success fw-bold" href="index.html">
+                <img src="assets/img/bungmo.png" width="40" alt="Logo">
+                Kalkulator Investasi
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                         <a class="nav-link text-success fw-bold" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success fw-bold" href="#home">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <main id="content">
+
+        <!-- Halaman Home -->
+        <div id="home" class="container" style="display:none;">
+            <div class="page">
+                <div class="row align-items-center text-center text-lg-start">
+                    <div class="col-lg-6">
+                        <h1 class="display-5 fw-bold">Selamat Datang di Website <br> <span class="text-success">Kalkulator</span> Investasi</h1>
+                        <p class="fs-5 my-4">Anda bisa menghitung berbagai jenis permasalahan tentang keuangan anda menggunakan Website Kalkulator ini!</p>
+                        <a class="btn btn-success btn-lg px-4" href="#menu">Mulai</a>
+                    </div>
+                    <div class="col-lg-6 d-none d-lg-block">
+                        <img src="assets/img/Calculator-bro.png" class="img-fluid" alt="Ilustrasi Kalkulator">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman Menu -->
+        <div id="menu" class="container" style="display:none;">
+            <div class="page">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7 text-center">
+                        <h2 class="mb-4">Pilih salah satu menu</h2>
+                        <div class="d-grid gap-3">
+                            <a class="btn btn-outline-success p-3 fs-5" href="#bungamajemuk">Menghitung Bunga Majemuk</a>
+                            <a class="btn btn-outline-success p-3 fs-5" href="#bungasederhana">Menghitung Waktu Investasi</a>
+                            <a class="btn btn-outline-success p-3 fs-5" href="#bungamasadepan">Menghitung Nilai Masa Depan</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <img src="assets/img/Calculator-rafiki.png" class="img-fluid" alt="Ilustrasi Menu">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kalkulator Bunga Sederhana (Menghitung Waktu) -->
+        <div id="bungasederhana" class="container" style="display:none;">
+            <div class="page">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <img src="assets/img/mobi.jpg" class="img-fluid rounded" alt="Investasi Mobil">
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-section">
+                            <h1 class="mb-4">Kalkulator Waktu Investasi</h1>
+                            <form id="FormInvestasiSederhana">
+                                <div class="mb-3">
+                                    <label for="awalSederhana" class="form-label">Nilai Awal Investasi (Rp):</label>
+                                    <input class="form-control form-control-lg" type="number" id="awalSederhana" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tujuanSederhana" class="form-label">Nilai Investasi Tujuan (Rp):</label>
+                                    <input class="form-control form-control-lg" type="number" id="tujuanSederhana" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lajuSederhana" class="form-label">Laju Pertumbuhan per Tahun (%):</label>
+                                    <input class="form-control form-control-lg" type="number" step="0.01" id="lajuSederhana" required>
+                                </div>
+                                <button type="button" class="btn btn-success w-100 btn-lg" onclick="calculateInvestmentSederhana()">Hitung</button>
+                            </form>
+                            <div id="resultSederhana" class="alert alert-success mt-4" role="alert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kalkulator Bunga Majemuk -->
+        <div id="bungamajemuk" class="container" style="display:none;">
+            <div class="page">
+                <div class="row align-items-center g-5">
+                     <div class="col-lg-5 d-none d-lg-block">
+                        <img src="assets/img/lapi.jpg" class="img-fluid rounded" alt="Investasi Laptop">
+                    </div>
+                    <div class="col-lg-7">
+                         <div class="form-section">
+                            <h1 class="mb-4">Kalkulator Bunga Majemuk</h1>
+                            <form id="FormInvestasiMajemuk">
+                                <div class="mb-3">
+                                    <label for="awalMajemuk" class="form-label">Nilai Awal Investasi (Rp):</label>
+                                    <input class="form-control form-control-lg" type="number" id="awalMajemuk" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="waktuMajemuk" class="form-label">Jangka Waktu (Tahun):</label>
+                                    <input class="form-control form-control-lg" type="number" id="waktuMajemuk" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lajuMajemuk" class="form-label">Laju Pertumbuhan per Tahun (%):</label>
+                                    <input class="form-control form-control-lg" type="number" step="0.01" id="lajuMajemuk" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="frekMajemuk" class="form-label">Frekuensi Peracikan Bunga per Tahun:</label>
+                                    <input class="form-control form-control-lg" type="number" id="frekMajemuk" required>
+                                </div>
+                                <button type="button" class="btn btn-success w-100 btn-lg" onclick="calculateInvestmentMajemuk()">Hitung</button>
+                            </form>
+                            <div id="resultMajemuk" class="alert alert-success mt-4" role="alert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Kalkulator Bunga Masa Depan -->
+        <div id="bungamasadepan" class="container" style="display:none;">
+             <div class="page">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <img src="assets/img/future.png" class="img-fluid rounded" alt="Investasi Masa Depan">
+                    </div>
+                    <div class="col-lg-7">
+                         <div class="form-section">
+                            <h1 class="mb-4">Kalkulator Nilai Masa Depan</h1>
+                            <form id="FormInvestasiMasaDepan">
+                                <div class="mb-3">
+                                    <label for="awalMasaDepan" class="form-label">Nilai Awal Investasi (Rp):</label>
+                                    <input class="form-control form-control-lg" type="number" id="awalMasaDepan" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="waktuMasaDepan" class="form-label">Jangka Waktu (Tahun):</label>
+                                    <input class="form-control form-control-lg" type="number" id="waktuMasaDepan" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lajuMasaDepan" class="form-label">Laju Pertumbuhan per Tahun (%):</label>
+                                    <input class="form-control form-control-lg" type="number" step="0.01" id="lajuMasaDepan" required>
+                                </div>
+                                <button type="button" class="btn btn-success w-100 btn-lg" onclick="calculateInvestmentMasaDepan()">Hitung</button>
+                            </form>
+                            <div id="resultMasaDepan" class="alert alert-success mt-4" role="alert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">© 2024 Kalkulator Investasi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- JavaScript Kustom -->
+    <script>
+        // Fungsi untuk menformat angka menjadi format Rupiah
+        const formatRupiah = (number) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(number);
+        };
+        
+        // Fungsi untuk menampilkan halaman berdasarkan hash URL
+        const showPage = (page) => {
+            document.querySelectorAll('#content > div').forEach(div => {
+                div.style.display = 'none';
+            });
+
+            if (page === '' || page === '#') {
+                page = '#home'; // Halaman default
+            }
+
+            const targetPage = document.querySelector(page);
+            if (targetPage) {
+                targetPage.style.display = 'block';
+            } else {
+                document.querySelector('#home').style.display = 'block'; // Fallback jika hash tidak valid
+            }
+        };
+
+        // Event listener untuk perubahan hash
+        window.addEventListener('hashchange', () => showPage(window.location.hash));
+
+        // Tampilkan halaman yang sesuai saat pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+             // Sembunyikan semua hasil di awal
+            document.getElementById("resultSederhana").style.display = 'none';
+            document.getElementById("resultMajemuk").style.display = 'none';
+            document.getElementById("resultMasaDepan").style.display = 'none';
+            showPage(window.location.hash);
+        });
+        
+        function calculateInvestmentSederhana() {
+            const P = parseFloat(document.getElementById("awalSederhana").value);
+            const A = parseFloat(document.getElementById("tujuanSederhana").value);
+            const r = parseFloat(document.getElementById("lajuSederhana").value) / 100;
+
+            if(isNaN(P) || isNaN(A) || isNaN(r) || P <= 0 || A <= P) {
+                alert("Mohon isi semua field dengan benar. Nilai tujuan harus lebih besar dari nilai awal.");
+                return;
+            }
+
+            const years = Math.log(A / P) / Math.log(1 + r);
+            const resultDiv = document.getElementById("resultSederhana");
+            resultDiv.innerHTML = `Dibutuhkan waktu sekitar <strong>${years.toFixed(2)} tahun</strong> agar investasi Anda mencapai ${formatRupiah(A)}.`;
+            resultDiv.style.display = 'block';
+        }
+
+        function calculateInvestmentMajemuk() {
+            const P = parseFloat(document.getElementById("awalMajemuk").value);
+            const t = parseFloat(document.getElementById("waktuMajemuk").value);
+            const r = parseFloat(document.getElementById("lajuMajemuk").value) / 100;
+            const n = parseFloat(document.getElementById("frekMajemuk").value);
+
+            if(isNaN(P) || isNaN(t) || isNaN(r) || isNaN(n) || P <= 0 || t <= 0 || n <= 0) {
+                alert("Mohon isi semua field dengan benar dan nilai harus positif.");
+                return;
+            }
+            
+            const rumus = P * Math.pow(1 + (r / n), n * t);
+            const resultDiv = document.getElementById("resultMajemuk");
+            resultDiv.innerHTML = `Nilai investasi Anda setelah <strong>${t} tahun</strong> adalah <strong>${formatRupiah(rumus)}</strong>.`;
+            resultDiv.style.display = 'block';
+        }
+
+        function calculateInvestmentMasaDepan() {
+            const P = parseFloat(document.getElementById("awalMasaDepan").value);
+            const t = parseFloat(document.getElementById("waktuMasaDepan").value);
+            const r = parseFloat(document.getElementById("lajuMasaDepan").value) / 100;
+            
+            if(isNaN(P) || isNaN(t) || isNaN(r) || P <= 0 || t <= 0) {
+                alert("Mohon isi semua field dengan benar dan nilai harus positif.");
+                return;
+            }
+
+            const rumus = P * Math.pow(1 + r, t);
+            const resultDiv = document.getElementById("resultMasaDepan");
+            resultDiv.innerHTML = `Nilai investasi Anda setelah <strong>${t} tahun</strong> adalah <strong>${formatRupiah(rumus)}</strong>.`;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

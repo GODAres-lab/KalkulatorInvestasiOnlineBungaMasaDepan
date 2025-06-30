@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+}
+.ijo {
+    color: rgb(0, 128, 0);
+    font-weight: 800;
+}
+
+/* Style untuk halaman Home */
+.page {
+    padding: 10% 0 0;
+    margin: auto;
+}
+n {
+    font-size: 48px;
+    font-weight: 700;
+}
+/* Responsive untuk layar kecil */
+@media (max-width: 768px) {
+    .page table {
+        display: flex; /* Ubah table menjadi flexbox */
+        flex-direction: column; /* Susun elemen secara vertikal */
+        align-items: center; /* Pusatkan elemen secara horizontal */
+    }
+
+    .page table td {
+        width: 100%; /* Lebar setiap kolom menjadi 100% */
+        text-align: center; /* Pusatkan teks di setiap kolom */
+        margin-bottom: 20px; /* Berikan jarak antar kolom */
+    }
+
+    .page table td img {
+        max-width: 100%; /* Lebar gambar maksimal 100% */
+        height: auto; /* Tinggi gambar menyesuaikan lebar */
+    }
+
+    n {
+        font-size: 32px; /* Perkecil ukuran font */
+    }
+}
+
+
+/* Style untuk form kalkulator */
+.container table {
+    width: 100%; /* Lebar tabel menjadi 100% */
+}
+
+.container table td {
+    vertical-align: top; /* Sejajarkan konten kolom ke atas */
+    padding: 20px; /* Berikan jarak di dalam kolom */
+}
+
+.container table td img {
+    max-width: 100%; /* Lebar gambar maksimal 100% */
+    height: auto; /* Tinggi gambar menyesuaikan lebar */
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 768px) {
+    .container table {
+        display: flex; /* Ubah table menjadi flexbox */
+        flex-direction: column-reverse; /* Susun elemen gambar di atas form */
+        align-items: center; /* Pusatkan elemen secara horizontal */
+    }
+
+    .container table td {
+        width: 100%; /* Lebar setiap kolom menjadi 100% */
+        text-align: center; /* Pusatkan teks di setiap kolom */
+        margin-bottom: 20px; /* Berikan jarak antar kolom */
+    }
+}
